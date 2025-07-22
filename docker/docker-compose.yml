@@ -1,0 +1,15 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.4
+    command: start --hostname-strict=false --proxy=edge
+    environment:
+      KC_DB: mysql
+      KC_DB_URL_HOST: ${MYSQL_HOST}
+      KC_DB_URL_DATABASE: ${MYSQL_DB}
+      KC_DB_USERNAME: ${MYSQL_USER}
+      KC_DB_PASSWORD: ${MYSQL_PASS}
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    restart: always
